@@ -17,7 +17,7 @@
     "url": "https://github.com/rickkky/event-dispenser"
   },
   "main": "dist/index.js",
-  "module": "dist/ts-startyp.esm.js",
+  "module": "dist/event-dispenser.esm.js",
   "typings": "dist/index.d.ts",
   "files": [
     "dist"
