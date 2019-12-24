@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.4](https://github.com/rickkky/event-dispenser/compare/v0.1.2...v0.1.4) (2019-12-24)
+
+
+### Bug Fixes
+
+* use symbol to indicate private attrs ([a8f001b](https://github.com/rickkky/event-dispenser/commit/a8f001b3f910f20d609b0ca6a231f679a85cec0a))
+
 ### [0.1.2](https://github.com/rickkky/event-dispenser/compare/v0.1.0...v0.1.2) (2019-12-02)
 
 
