@@ -1,18 +1,20 @@
 import EventPuber, { EventHandler } from './EventPuber'
 
+const map = Symbol('event-map')
+
 export class EventDispenser<M extends { [type: string]: any }> {
-  private map: Map<keyof M, EventPuber<any>> = new Map()
+  private [map]: Map<keyof M, EventPuber<any>> = new Map()
 
   public on<K extends keyof M>(
     type: K,
     handler: EventHandler<M[K]>,
     isAsync = false,
   ) {
-    if (!this.map.has(type)) {
-      this.map.set(type, new EventPuber<M[K]>())
+    if (!this[map].has(type)) {
+      this[map].set(type, new EventPuber<M[K]>())
     }
 
-    ;(this.map.get(type) as EventPuber<M[K]>).on(handler, isAsync)
+    ;(this[map].get(type) as EventPuber<M[K]>).on(handler, isAsync)
   }
 
   public once<K extends keyof M>(
@@ -20,15 +22,15 @@ export class EventDispenser<M extends { [type: string]: any }> {
     handler: EventHandler<M[K]>,
     isAsync = false,
   ) {
-    if (!this.map.has(type)) {
-      this.map.set(type, new EventPuber<M[K]>())
+    if (!this[map].has(type)) {
+      this[map].set(type, new EventPuber<M[K]>())
     }
 
-    ;(this.map.get(type) as EventPuber<M[K]>).once(handler, isAsync)
+    ;(this[map].get(type) as EventPuber<M[K]>).once(handler, isAsync)
   }
 
   public off<K extends keyof M>(type: K, handler: EventHandler<M[K]>) {
-    const puber = this.map.get(type)
+    const puber = this[map].get(type)
 
     if (!puber) {
       return false
@@ -38,7 +40,7 @@ export class EventDispenser<M extends { [type: string]: any }> {
   }
 
   public emit<K extends keyof M>(type: K, event: M[K]) {
-    const puber = this.map.get(type)
+    const puber = this[map].get(type)
 
     if (!puber) {
       return

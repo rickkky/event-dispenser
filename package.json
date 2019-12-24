@@ -1,6 +1,6 @@
 {
   "name": "event-dispenser",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "An event emitter library written in TypeScript.",
   "keywords": [
     "event",
